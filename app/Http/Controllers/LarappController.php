@@ -80,15 +80,11 @@ class LarappController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $project = Project::find($id);
-        $projectFields = $request->validate([
-            'name' => 'required',
-            'industry' => 'required',
-            'leader' => 'required'
+        Project::find($id)->update([
+            'name' => $request->name,
+            'industry' => $request->industry,
+            'leader' => $request->leader
         ]);
-        
-
-        $project::update($projectFields);
 
         return redirect('/');
     }
